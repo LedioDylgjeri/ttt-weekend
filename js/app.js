@@ -1,5 +1,5 @@
 /*-------------------------------- Constants --------------------------------*/
-
+const board = document.getElementsByClassName('board')
 
 
 /*---------------------------- Variables (state) ----------------------------*/
