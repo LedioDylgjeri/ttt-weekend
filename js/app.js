@@ -19,48 +19,76 @@ let board, turn, winner;
 /*------------------------ Cached Element References ------------------------*/
 const messageEl = document.getElementById('message')  
 // console.log(messageEl);
-const squareEls = document.querySelectorAll('.square')
+const squareEls = document.querySelectorAll('section > div')
 //console.log(squareEls);
+const reset = document.getElementById('reset-btn')
 
 
 /*----------------------------- Event Listeners -----------------------------*/
-for (const square of squareEls) {
+squareEls.forEach(function(square) {
   square.addEventListener('click', handleClick)
-}
+})
 
+reset.addEventListener('click', resetGame)
 /*-------------------------------- Functions --------------------------------*/
 init()
+messageEl.innerText = 'Test Your Tic Tac Toe Skills'
 
 function init() {
-  board = [1, -1, 1, -1, null, null, null, null, null]
+  board = [null, null, null, null, null, null, null, null, null]
   turn = 1
   winner = null
   render() 
 }
 
 function render() {
-  board.forEach(function( num, idx) {
+  board.forEach(function(num, idx) {
+    squareEls[idx].innerText = num
     // console.log(board[idx]);
     // console.log(squareEls[idx]);
     if(board[idx] === 1) {
       squareEls[idx].textContent = 'X'
-    } else if (board[idx] === -1) {
+    } if (board[idx] === -1) {
       squareEls[idx].textContent = 'O'
+    } if (board[idx] === null) {
+      squareEls[idx].innerText = ''
     }
   })  
-  if(winner) {
-    messageEl.textContent =  `It's ${turn} turn to paly.`
+  if(!winner) {
+    messageEl.textContent =  `It's ${turn === 1 ? 'x' : '0'} turn to paly.`
   } else if(winner === 'T') {
     messageEl.textContent =  `It's a tie!`
   } else {
-    messageEl.textContent =  `Congratulations! Player ${turn} has won.`
+    messageEl.textContent =  `Congratulations! Player ${winner === turn ? 'x' : 'o'} has won.`
   }
-  // handleClick()
 }
 
 function handleClick(evt) {
-  board[parseInt(evt.target.id.replace('sq', ''))];
-  console.log(board);
+  const sqIdx = parseInt(evt.target.id.replace('sq', ''))
+  // console.log(board[sqIdx]);
+  if(board[sqIdx]) {
+    return
+  } if(winner) {
+    return
+  }
+  board[sqIdx] = turn
+  turn *= -1
+  winner = getWinner()
+  render()
+}
+
+function getWinner() {
+  winningCombos.forEach(combo => {
+  	if (Math.abs(board[combo[0]] + board[combo[1]] + board[combo[2]]) === 3){
+			winner = turn
+		}else if(!board.includes(null)){
+			winner = 'T'
+		}
+	})
+}
+
+function resetGame() {
+  init();
 }
 
 
