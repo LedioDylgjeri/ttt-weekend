@@ -32,7 +32,6 @@ squareEls.forEach(function(square) {
 reset.addEventListener('click', resetGame)
 /*-------------------------------- Functions --------------------------------*/
 init()
-messageEl.innerText = 'Test Your Tic Tac Toe Skills'
 
 function init() {
   board = [null, null, null, null, null, null, null, null, null]
@@ -44,8 +43,6 @@ function init() {
 function render() {
   board.forEach(function(num, idx) {
     squareEls[idx].innerText = num
-    // console.log(board[idx]);
-    // console.log(squareEls[idx]);
     if(board[idx] === 1) {
       squareEls[idx].textContent = 'X'
     } if (board[idx] === -1) {
@@ -55,21 +52,20 @@ function render() {
     }
   })  
   if(!winner) {
-    messageEl.textContent =  `It's ${turn === 1 ? 'x' : '0'} turn to paly.`
+    messageEl.textContent = `It's ${turn === 1 ? 'x' : '0'} turn to paly.`
   } else if(winner === 'T') {
-    messageEl.textContent =  `It's a tie!`
+    messageEl.textContent = `It's a tie!`
   } else {
-    messageEl.textContent =  `Congratulations! Player ${winner === turn ? 'x' : 'o'} has won.`
+    messageEl.textContent = `${winner === 1 ? 'Congratulations! Player X has won' : 'Congratulations! Player O has won'}`
   }
 }
 
 function handleClick(evt) {
   const sqIdx = parseInt(evt.target.id.replace('sq', ''))
-  // console.log(board[sqIdx]);
   if(board[sqIdx]) {
     return
   } if(winner) {
-    return
+    return turn = winner
   }
   board[sqIdx] = turn
   turn *= -1
@@ -77,18 +73,37 @@ function handleClick(evt) {
   render()
 }
 
+// function getWinner() {
+//   for(let i = 0; i < winningCombos.length; i++) {
+//     if (Math.abs(board[winningCombos[0]] + board[winningCombos[1]] + board[winningCombos[2]]) === 3){
+//       return winner = turn
+// 		}else if(!board.includes(null)){
+//       return winner = 'T'
+// 		}
+//       return null
+// 	}
+// }
+
 function getWinner() {
-  winningCombos.forEach(combo => {
-  	if (Math.abs(board[combo[0]] + board[combo[1]] + board[combo[2]]) === 3){
-			winner = turn
-		}else if(!board.includes(null)){
-			winner = 'T'
-		}
-	})
+  let bestCombo = []
+  winningCombos.forEach(function(combo){
+    let comboValue = board[combo[0]] + board[combo[1]] + board[combo[2]]
+    bestCombo.push(Math.abs(comboValue))
+  }) 
+    let winnersCombo = bestCombo.some(function(value){
+      return value === 3
+    })
+    if (winnersCombo === true) {
+      return turn * -1
+    } else if (!board.some(function(value){return value === null})){
+      return 'T' 
+    }
+      return null
 }
 
 function resetGame() {
   init();
+  messageEl.innerText = 'Test Your Tic Tac Toe Skills'
 }
 
 
