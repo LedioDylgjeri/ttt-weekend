@@ -73,17 +73,6 @@ function handleClick(evt) {
   render()
 }
 
-// function getWinner() {
-//   for(let i = 0; i < winningCombos.length; i++) {
-//     if (Math.abs(board[winningCombos[0]] + board[winningCombos[1]] + board[winningCombos[2]]) === 3){
-//       return winner = turn
-// 		}else if(!board.includes(null)){
-//       return winner = 'T'
-// 		}
-//       return null
-// 	}
-// }
-
 function getWinner() {
   let bestCombo = []
   winningCombos.forEach(function(combo){
