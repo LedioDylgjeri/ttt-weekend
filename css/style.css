@@ -2,12 +2,25 @@ body {
   text-align: center;
 	/* Use a system font, if none are available use an available sans-sarif   font */
 	font-family: 'Rampart One', cursive;
-  color: rgba(35, 51, 46, 0.4);
+  color: rgba(9, 53, 39, 0.667);
 	margin: 0;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(#e66465, #9198e5);
+  background: linear-gradient(27deg,#a6f2f7, #f5d48d);
+}
+
+h1 {
+  padding-top: 90px;
+  margin-bottom: 1px;
+}
+
+h2 {
+  margin-bottom: 30px;
+}
+
+.message {
+  font-display:
 }
 
 section.board {
@@ -19,10 +32,11 @@ section.board {
 }
 
 div {
-  border: 1px solid rgba(180, 10, 223, 0.3);
-  font-size: 8vmin;
   text-align: center;
+  border: 1px solid rgba(150, 14, 4, 0.306);
+  font-size: 8vmin;
   vertical-align: middle;
+  border-radius: 10px;
 }
 
 button {
@@ -32,13 +46,29 @@ button {
   padding: 5px 0;
   margin: 10px auto;
   border-radius: 5px;
-  background-color: rgba(80, 246, 190, 0.6);
+  background-color: rgba(80, 246, 191, 0.279);
+  border: transparent;
+  box-shadow: 4px 4px#059a6327;
 }
 
 button:hover {
-  background-color: rgba(6, 183, 121, 0.4);
+  background-color: rgba(242, 89, 47, 0.529);
+  -webkit-transition: background-color 1s ease-in-out;
+  -moz-transition: background-color 1s ease-in-out;
+  -o-transition: background-color 1s ease-in-out;
+  transition: background-color 1s ease-in-out;
+  font-size: 20px;
+  -webkit-transition: font-size .6s ease-in-out;
+  -moz-transition: font-size .6s ease-in-out;
+  -o-transition: font-size .6s ease-in-out;
+  transition: font-size .6s ease-in-out;
+  
 }
 
-.square:hover {
-  background-color: rgba(11, 37, 233, 0.3)
+div:hover {
+  -webkit-transition: background-color 1s ease-out;
+  -moz-transition: background-color 1s ease-out;
+  -o-transition: background-color 1s ease-out;
+  transition: background-color 1s ease-out;
+  background-color: rgba(242, 89, 47, 0.207)
 }
