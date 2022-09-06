@@ -42,13 +42,13 @@ function init() {
 
 function render() {
   board.forEach(function(num, idx) {
-    squareEls[idx].innerText = num
+    squareEls[idx].textContent = num
     if(board[idx] === 1) {
       squareEls[idx].textContent = 'X'
     } if (board[idx] === -1) {
       squareEls[idx].textContent = 'O'
     } if (board[idx] === null) {
-      squareEls[idx].innerText = ''
+      squareEls[idx].textContent = ''
     }
   })  
   if(!winner) {
