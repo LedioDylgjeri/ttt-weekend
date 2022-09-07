@@ -48,7 +48,7 @@ function render() {
     }
   })  
   if(!winner) {
-    messageEl.textContent = `It's ${turn === 1 ? 'x' : '0'} turn to paly.`
+    messageEl.textContent = `It's ${turn === 1 ? 'x' : '0'} turn to play.`
   } else if(winner === 'T') {
     messageEl.textContent = `It's a tie!`
   } else {
